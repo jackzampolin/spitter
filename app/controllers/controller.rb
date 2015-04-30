@@ -40,4 +40,7 @@ get '/spits/:id' do
 end
 
 delete '/spits/:id' do
+  @spit = Spit.where(id: params[:id]).first
+  @spit.destroy
+  redirect '/'
 end

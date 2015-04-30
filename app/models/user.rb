@@ -19,7 +19,15 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def create
+  def followers
+    Follower.where(followee: self.id).map(&:follower).map do |user_id|
+      User.where(id: user_id).first
+    end
+  end
 
+  def following
+    Follower.where(follower: self.id).map(&:followee).map do |user_id|
+      User.where(id: user_id).first
+    end
   end
 end
