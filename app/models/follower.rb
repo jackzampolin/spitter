@@ -1,4 +1,4 @@
 class Follower < ActiveRecord::Base
-  validates: follower, presence: true
-  validates: followee, presence: true
+  validates :follower, presence: true
+  validates :followee, presence: true
 end

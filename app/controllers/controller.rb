@@ -10,8 +10,11 @@ get '/spits/:id' do
   erb :'spits/spit_page'
 end
 
-delete '/spits/:id' do
+post '/spits' do
 end
 
-put '/spits/:id' do
+delete '/spits/:id' do
+  @spit = Spit.where(id: params[:id]).first
+  @spit.destroy
+  redirect '/'
 end

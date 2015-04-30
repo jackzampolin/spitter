@@ -3,10 +3,6 @@
 <p><%= @spit.created_at %></p>
 <p><%= @spit.content %></p>
 <form action='/spits/<%= @spit.id %>' method='post'>
-  <input type='hidden' name='_method' value='put'>
-  <input type="submit" value="Update!" >
-</form>
-<form action='/spits/<%= @spit.id %>' method='post'>
   <input type='hidden' name='_method' value='delete'>
   <input type="submit" value="Delete!">
 </form>
