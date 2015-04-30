@@ -1,0 +1,14 @@
+<h1>Add tweet</h1>
+
+<div>
+  <% @tweet.errors.full_messages.each do |error| %>
+  <%= error %>
+  <% end %>
+</div>
+
+<form action='/users/<%= @user.id %>' method='post'>
+  <div>
+    <textarea type="text" placeholder="what's the signal bats" name="bat_signal" value=<% @tweet.bat_signal %>></textarea>
+    <input type="submit" value="Send Signal"/>
+  </div>
+</form>
