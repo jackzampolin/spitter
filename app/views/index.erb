@@ -13,3 +13,10 @@
 </form>
 
 <a href="/users/new">Create A New User</a>
+
+<% @spits.each do |spit| %>
+  <% @user = User.where(id: spit.user_id).first %>
+  <p><a href="/users/<%= @user.id %>"><%= @user.username %></a></p>
+  <p><%= spit.created_at %></p>
+  <p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p>
+<% end %>

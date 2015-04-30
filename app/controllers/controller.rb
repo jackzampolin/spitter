@@ -2,6 +2,7 @@ require 'bcrypt'
 
 get '/' do
   @login_error = session[:login_error]
+  session.delete[:login_error]
   erb :index
 end
 
@@ -29,5 +30,14 @@ post '/users/new' do
 end
 
 get '/users/:id' do
+  @spits = Spit.first(50).sort_by &:created_at
   erb :profile
+end
+
+get '/spits/:id' do
+  @spit = Spit.where(id: params[:id]).first
+  erb :'spits/spit_page'
+end
+
+delete '/spits/:id' do
 end
