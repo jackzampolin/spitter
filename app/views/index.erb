@@ -1,8 +1,22 @@
 <h1>Welcome to $pitter~~~$$$$$$</h1>
 <p>Please login or create a new user</p>
-<form action='/login' method='post'>
-  <input type="text" name='username' placeholder='username'>
-  <input type="text" name='password' placeholder='password'>
-  <input type='submit' value='Login!'>
+
+<%= @login_error %>
+<form action="/login" method="post">
+
+  <input type="text" name="email" placeholder="email">
+
+  <input type="text" name="password" placeholder="password">
+
+  <input type="submit" value="Login!">
+
 </form>
+
 <a href="/users/new">Create A New User</a>
+
+<% @spits.each do |spit| %>
+  <% @user = User.where(id: spit.user_id).first %>
+  <p><a href="/users/<%= @user.id %>"><%= @user.username %></a></p>
+  <p><%= spit.created_at %></p>
+  <p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p>
+<% end %>
