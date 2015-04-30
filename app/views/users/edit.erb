@@ -1,7 +1,0 @@
-<h1>Edit Your Bat-Profile</h1>
-  <form action="/users/<%= @user.id %>" method="post">
-      <input type="hidden" name="_method" value="patch">
-      <input type="text" name="photo_url" placeholder="Bat-Profile Pic url" value="<% @user.photo_url %>">
-      <input type="text" name="bio" placeholder="Your Bio" value="<% @user.bio %>">
-      <input type="submit" value="Bat Submit">
-  </form>
