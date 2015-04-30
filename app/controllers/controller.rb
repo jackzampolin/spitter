@@ -32,6 +32,16 @@ post '/users/new' do
   redirect '/'
 end
 
+post '/spits' do
+  @spit = Spit.new(user_id: session[:user_id], content: params[:content])
+  if @spit.valid?
+    @spit.save
+    redirect '/'
+  else
+    status 400
+    redirect '/'
+end
+
 get '/users/:id' do
   @spits = Spit.first(50).sort_by &:created_at
   erb :"/users/profile"
