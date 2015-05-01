@@ -1,11 +1,13 @@
+<br><br><br>
 <h1><%= @user_profile.username %>'s Profile</h1>
 <img src="<%= @user_profile.picture_url %>" />
-<% if @user_profile.first_name %>
+<div class="aboutme">
+  <% if @user_profile.first_name %>
   <h3><%= @user_profile.first_name + " " + @user_profile.last_name %></h3>
 <% end %>
-<p><%= @user_profile.about_me %></p>
-
-<% if @user_profile.id == session[:user_id] %>
+<p><%= @user_profile.about_me %></p></div>
+<br>
+<div class="jacksbutton"><% if @user_profile.id == session[:user_id] %>
   <%= erb :'spits/_new_spit_form' %>
   <%= erb :'users/_edit_users_button' %>
 <% elsif @login_user.following.include?(@user_profile) %>
@@ -13,22 +15,20 @@
 <% else %>
   <%= erb :'users/_follow_button' %>
 <% end %>
+</div>
 
-<% @users_spits.each do |spit| %>
-  <p><a href="/users/<%= spit.user_id %>"><%= spit.username %></a></p>
-  <p><%= spit.created_at %></p>
-  <p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p>
+<h3><%= @user_profile.username %>'s spits:</h3>
+<% @users_spits.reverse.each do |spit| %>
+  <div class="tweet_display">
+    <b>Hot Spitter: </b><a href="/users/<%= spit.user_id %>"><div class="username"><%= spit.username %></div></a></p>
+    <div class="spit"><p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p></div>
+    <p><%= spit.created_at %></p>
+    <form action="/favorites" method="post">
+      <input type='hidden' name='spit_id' value='<%= spit.id %>'>
+      THIS POST IS FYAH!
+      <input type="image" src="/images/Captivating_Flame_icon.png" ALT="submit"><b><%= spit.favorite_count %></b>
+    </form>
+  </div>
+  <br><br>
 <% end %>
 
-
-<!-- #Display Username
-#Display First Name, Last Name
-#Display Bio
-#Display Picture
-
-#List of User's Spits
-
-#Maybe route to /users/:id/edit ?
-#Edit Bio
-#Edit Picture
- -->

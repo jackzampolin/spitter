@@ -1,30 +1,31 @@
-<h1>Welcome to $pitter~~~$$$$$$</h1>
-<p>Please login or create a new user</p>
+<br><br><br>
 
 <%= @login_error %>
-<form action="/login" method="post">
+<% if session[:user_id] == nil %>
+<h3>Please login or create a new user</h3>
 
-  <input type="text" name="email" placeholder="email">
+  <form action="/login" method="post">
+    <input type="text" name="email" placeholder="email">
+    <input type="text" name="password" placeholder="password">
 
-  <input type="text" name="password" placeholder="password">
-
-  <input type="submit" value="Login!">
-
-</form>
-
-<form action="/hashtags" method="post">
-  <input type="text" name="hashtag_input" placeholder="Enter Hashtag">
-  <input type="submit" value="Search Hashtag!">
-</form>
-
-
+    <input type="submit" value="Login!">
+  </form>
 <a href="/users/new">Create A New User</a>
+<% end %>
+
+<h3 id="checkthis">Welcome, <%= @user.username %>.<br> <br> HERE'S YO' FEED:</h3>
+
 
 <% @spits.each do |spit| %>
-  <p><a href="/users/<%= spit.user_id %>"><%= spit.username %></a></p>
-  <p><%= spit.created_at %></p>
-  <p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p>
-  <form action="/favorites" method="post">
-    <input type="submit" value="Favorite Spit">
-  </form>
+  <div class="tweet_display">
+    <b>Hot Spitter: </b><a href="/users/<%= spit.user_id %>"><div class="username"><%= spit.username %></div></a></p>
+    <div class="spit"><p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p></div>
+    <p><%= spit.created_at %></p>
+    <form action="/favorites" method="post">
+      <input type='hidden' name='spit_id' value='<%= spit.id %>'>
+      THIS POST IS FYAH!
+      <input type="image" src="/images/Captivating_Flame_icon.png" ALT="submit"><b><%= spit.favorite_count %></b>
+    </form>
+  </div>
+  <br><br>
 <% end %>
