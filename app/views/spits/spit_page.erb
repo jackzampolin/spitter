@@ -2,7 +2,9 @@
 <p><a href="/users/<%= @user.id %>"><%= @user.username %></a></p>
 <p><%= @spit.created_at %></p>
 <p><%= @spit.content %></p>
-<form action='/spits/<%= @spit.id %>' method='post'>
-  <input type='hidden' name='_method' value='delete'>
-  <input type="submit" value="Delete!">
-</form>
+<% if session[:user_id] == @spit.user_id %>
+  <form action='/spits/<%= @spit.id %>' method='post'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type="submit" value="Delete!">
+  </form>
+<% end %>

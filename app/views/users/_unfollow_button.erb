@@ -1,0 +1,5 @@
+<form action='/followers' method='post'>
+  <input type='hidden' name='_method' value='delete'>
+  <input type='hidden' name='followee_id' value='<%= params[:id] %>'>
+  <input type='submit' value='UNFOLLOW THIS FOOL!'>
+</form>
