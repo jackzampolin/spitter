@@ -12,10 +12,19 @@
 
 </form>
 
+<form action="/hashtags" method="post">
+  <input type="text" name="hashtag_input" placeholder="Enter Hashtag">
+  <input type="submit" value="Search Hashtag!">
+</form>
+
+
 <a href="/users/new">Create A New User</a>
 
 <% @spits.each do |spit| %>
   <p><a href="/users/<%= spit.user_id %>"><%= spit.username %></a></p>
   <p><%= spit.created_at %></p>
   <p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p>
+  <form action="/favorites" method="post">
+    <input type="submit" value="Favorite Spit">
+  </form>
 <% end %>

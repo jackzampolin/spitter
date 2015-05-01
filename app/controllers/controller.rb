@@ -21,6 +21,11 @@ post '/login' do
   end
 end
 
+post '/hashtags' do
+  @hashtag_spits = Spit.where("content like ?", "%$" + params[:hashtag_input] + "%")
+  erb :hashtags
+end
+
 get '/users/new' do
   erb :"/users/new"
 end
@@ -100,5 +105,14 @@ delete '/followers' do
   @follow = Follower.where(follower: session[:user_id], followee: params[:followee_id]).first
   @follow.destroy
   redirect "users/#{params[:followee_id]}"
+end
+
+post '/favorites' do
+  Favorite.create(user_id: session[:user_id], spit_id: params[:id])
+  binding.pry
+  # @spit = Spit.where(id: params[:id]).first
+  # @spit.favorite_count += 1
+  # @spit.save!
+  redirect '/'
 end
 

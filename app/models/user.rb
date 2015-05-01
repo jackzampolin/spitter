@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   include BCrypt
 
   has_many :spits
+  has_many :favorites
 
   # validates :username, presence: true
   # validates :email, presence: true

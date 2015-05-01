@@ -4,6 +4,7 @@ class CreateSpits < ActiveRecord::Migration
       t.string :content
       t.string :username
       t.references :user
+      t.integer :favorite_count, default: 0
 
       t.timestamps
     end
