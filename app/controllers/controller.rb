@@ -1,7 +1,7 @@
 require 'bcrypt'
 
 get '/' do
-  @spits = Spit.first(50)
+  @spits = Spit.first(50).sort_by &:created_at
   @login_error = session[:login_error]
   if !session[:login_error].nil?
     session.delete[:login_error]
@@ -44,7 +44,19 @@ end
 
 get '/users/:id' do
   @spits = Spit.first(50).sort_by &:created_at
+  @user_profile = User.where(id: params[:id]).first
+  @users_spits = Spit.where(user_id: params[:id])
   erb :"/users/profile"
+end
+
+get '/users/:id/edit' do
+  @user = User.where(id: session[:user_id]).first
+  erb :"/users/edit"
+end
+
+put '/users/:id' do
+  @user = User.where(id: session[:user_id]).first
+
 end
 
 get '/spits/:id' do
