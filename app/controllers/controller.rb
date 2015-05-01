@@ -57,3 +57,15 @@ delete '/spits/:id' do
   @spit.destroy
   redirect '/'
 end
+
+post '/followers' do
+  @follow = Follower.create(follower: session[:user_id], followee: params[:followee_id])
+  redirect "users/#{params[:followee_id]}"
+end
+
+delete '/followers' do
+  @follow = Follower.where(follower: session[:user_id], followee: params[:followee_id]).first
+  @follow.destroy
+  redirect "users/#{params[:followee_id]}"
+end
+
