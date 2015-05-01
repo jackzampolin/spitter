@@ -1,0 +1,12 @@
+<form method='post' action='/users/<%= @user.id %>'>
+  <input type="hidden" name="_method" value="put">
+  <input type="text" name='username' value="<%= @user.username %>">
+  <input type="text" name='email' value="<%= @user.email%>">
+  <input type="text" name='first_name' value="<%= @user.first_name %>">
+  <input type="text" name='last_name' value="<%= @user.last_name %>">
+  <input type="text" name='about_me' value="<%= @user.about_me %>">
+  <input type="text" name='picture_url' value="<%= @user.picture_url %>">
+
+  <input type="submit" value="Edit User">
+
+</form>

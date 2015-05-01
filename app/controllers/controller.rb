@@ -34,8 +34,19 @@ end
 
 get '/users/:id' do
   @spits = Spit.first(50).sort_by &:created_at
-  @users_spits = Spit.where(id: params[:id])
+  @user_profile = User.where(id: params[:id]).first
+  @users_spits = Spit.where(user_id: params[:id])
   erb :"/users/profile"
+end
+
+get '/users/:id/edit' do
+  @user = User.where(id: session[:user_id]).first
+  erb :"/users/edit"
+end
+
+put '/users/:id' do
+  @user = User.where(id: session[:user_id]).first
+
 end
 
 get '/spits/:id' do

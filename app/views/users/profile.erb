@@ -1,12 +1,24 @@
-User Profile Page
+<h1><%= @user_profile.username %>'s Profile</h1>
+<img src="<%= @user_profile.picture_url %>" />
+<h3><%= @user_profile.first_name + " " + @user_profile.last_name %></h3>
+<p><%= @user_profile.about_me %></p>
 
-#Display Username
+<% @users_spits.each do |spit| %>
+  <% @user = User.where(id: spit.user_id).first %>
+  <p><a href="/users/<%= @user.id %>"><%= @user.username %></a></p>
+  <p><%= spit.created_at %></p>
+  <p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p>
+<% end %>
+
+
+<!-- #Display Username
 #Display First Name, Last Name
 #Display Bio
 #Display Picture
 
 #List of User's Spits
 
-#Maybe route to /spits/:id/edit ?
+#Maybe route to /users/:id/edit ?
 #Edit Bio
 #Edit Picture
+ -->
