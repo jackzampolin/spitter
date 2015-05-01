@@ -1,6 +1,7 @@
 require 'bcrypt'
 
 get '/' do
+  @user = User.where(id: session[:user_id]).first
   @spits = Spit.first(50).sort_by &:created_at
   @login_error = session[:login_error]
   if !session[:login_error].nil?
@@ -19,6 +20,11 @@ post '/login' do
     session[:login_error] = "Invalid email or password"
     redirect '/'
   end
+end
+
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/'
 end
 
 post '/hashtags' do
@@ -48,7 +54,7 @@ post '/spits' do
   @spit = Spit.new(user_id: session[:user_id], content: params[:content])
   if @spit.valid?
     @spit.save
-    redirect '/'
+    redirect "/users/#{session[:user_id]}"
   else
     status 400
     redirect '/'
@@ -59,7 +65,7 @@ get '/users/:id' do
   @spits = Spit.first(50).sort_by &:created_at
   @login_user = User.where(id: session[:user_id]).first
   @user_profile = User.where(id: params[:id]).first
-  @users_spits = Spit.where(user_id: params[:id])
+  @users_spits = Spit.where(user_id: params[:id]).sort_by &:created_at
   erb :"/users/profile"
 end
 
@@ -108,11 +114,10 @@ delete '/followers' do
 end
 
 post '/favorites' do
-  Favorite.create(user_id: session[:user_id], spit_id: params[:id])
-  binding.pry
-  # @spit = Spit.where(id: params[:id]).first
-  # @spit.favorite_count += 1
-  # @spit.save!
+  Favorite.create!(user_id: session[:user_id], spit_id: params[:spit_id])
+  @spit = Spit.where(id: params[:spit_id]).first
+  @spit.favorite_count += 1
+  @spit.save!
   redirect '/'
 end
 

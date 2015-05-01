@@ -2,10 +2,16 @@
 
 <% @hashtag_spits.each do |spit| %>
   <% @user = User.where(id: spit.user_id).first %>
-  <p><a href="/users/<%= @user.id %>"><%= @user.username %></a></p>
-
-  <p><%= spit.created_at %></p>
-
-  <p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p>
+  <div class="tweet_display">
+    <b>Hot Spitter: </b><a href="/users/<%= spit.user_id %>"><div class="username"><%= spit.username %></div></a></p>
+    <div class="spit"><p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p></div>
+    <p><%= spit.created_at %></p>
+    <form action="/favorites" method="post">
+      <input type='hidden' name='spit_id' value='<%= spit.id %>'>
+      THIS POST IS FYAH!
+      <input type="image" src="/images/Captivating_Flame_icon.png" ALT="submit"><b><%= spit.favorite_count %></b>
+    </form>
+  </div>
+  <br><br>
 
 <% end %>

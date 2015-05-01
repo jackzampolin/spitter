@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
@@ -17,6 +17,7 @@
 
   <title></title>
 </head>
+<div class="fixed-nav-bar"><a href="/"><img src="/images/SPITTER.png"></a><form action="/hashtags" method="post"><input type="text" name="hashtag_input" placeholder="Enter Hashtag"><input class="button" type="submit" value="Search Hashtag!"></form><a href="/users/<%= session[:user_id] %>">User Profile</a> | <a href="/logout">Logout</a></div>
 <body>
   <%= yield %>
 </body>

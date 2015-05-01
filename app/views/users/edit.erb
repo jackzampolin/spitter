@@ -1,13 +1,16 @@
-<form method='post' action='/users/<%= @user.id %>'>
-  <input type="hidden" name="_method" value="put">
-  <input type="text" name='username' value="<%= @user.username %>" placeholder='username'>
-  <input type="text" name='email' value="<%= @user.email%>" placeholder='email'>
-  <input type="text" name='first_name' value="<%= @user.first_name %>" placeholder='first name'>
-  <input type="text" name='last_name' value="<%= @user.last_name %>" placeholder='last name'>
-  <input type="text" name='about_me' value="<%= @user.about_me %>" placeholder='about me'>
-  <input type="text" name='picture_url' value="<%= @user.picture_url %>" placeholder='picture url'>
-  <input type="submit" value="Edit User">
+<br><br><br><form method='post' action='/users/<%= @user.id %>'>
+  <input type="hidden" name="_method" value="put"><br>
+  <input type="text" name='username' value="<%= @user.username %>" placeholder='username'> Username<br>
+  <input type="text" name='email' value="<%= @user.email%>" placeholder='email'> Email<br>
+  <input type="text" name='first_name' value="<%= @user.first_name %>" placeholder='first name'> First Name<br>
+  <input type="text" name='last_name' value="<%= @user.last_name %>" placeholder='last name'> Last Name<br>
+  <input type="text" name='about_me' value="<%= @user.about_me %>" placeholder='about me'> Describe yo'self, dawg!<br>
+  <input type="text" name='picture_url' value="<%= @user.picture_url %>" placeholder='picture url'> Profile Pic URL<br>
+  <input type="submit" value="Edit Profile">
 </form>
+<br>
+
+Can't Hang?
 <br>
 <form method='post' action='/users/<%= @user.id %>'>
   <input type='hidden' name='_method' value='delete'>
