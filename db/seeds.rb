@@ -13,9 +13,10 @@ require 'Faker'
 end
 
 (1..10).each do |user_id|
+  hashtag = " $" + Faker::Lorem.word
   10.times do |index|
     Spit.create(
-      content: Faker::Lorem.paragraph,
+      content: Faker::Lorem.paragraph + hashtag,
       user_id: user_id,
       )
   end
