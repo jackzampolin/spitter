@@ -1,11 +1,21 @@
 <h1><%= @user_profile.username %>'s Profile</h1>
 <img src="<%= @user_profile.picture_url %>" />
-<h3><%= @user_profile.first_name + " " + @user_profile.last_name %></h3>
+<% if @user_profile.first_name %>
+  <h3><%= @user_profile.first_name + " " + @user_profile.last_name %></h3>
+<% end %>
 <p><%= @user_profile.about_me %></p>
 
+<% if @user_profile.id == session[:user_id] %>
+  <%= erb :'spits/_new_spit_form' %>
+  <%= erb :'users/_edit_users_button' %>
+<% elsif @login_user.following.include?(@user_profile) %>
+  <%= erb :'users/_unfollow_button' %>
+<% else %>
+  <%= erb :'users/_follow_button' %>
+<% end %>
+
 <% @users_spits.each do |spit| %>
-  <% @user = User.where(id: spit.user_id).first %>
-  <p><a href="/users/<%= @user.id %>"><%= @user.username %></a></p>
+  <p><a href="/users/<%= spit.user_id %>"><%= spit.username %></a></p>
   <p><%= spit.created_at %></p>
   <p><a href="/spits/<%= spit.id %>"><%= spit.content %></a></p>
 <% end %>
