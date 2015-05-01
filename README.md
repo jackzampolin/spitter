@@ -1,3 +1,3 @@
-$$$$$$$$$$$$$$$$$$$$$$$$$$$PURPOSE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-            SPITTING HOT FIRE!  WELCOME TO SPITTER
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+WELCOME TO SPITTER...
+
+Please spit some fire.
