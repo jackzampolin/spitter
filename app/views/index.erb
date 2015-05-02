@@ -12,9 +12,9 @@
   </form>
 <a href="/users/new">Create A New User</a>
 <% end %>
-
+<% if session[:user_id] %>
 <h3 id="checkthis">Welcome, <%= @user.username %>.<br> <br> HERE'S YO' FEED:</h3>
-
+<% end %>
 
 <% @spits.each do |spit| %>
   <div class="tweet_display">
